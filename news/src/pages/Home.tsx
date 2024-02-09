@@ -3,40 +3,29 @@ import {
   IonContent,
   IonList,
   IonPage,
-  IonRefresher,
-  IonRefresherContent,
 } from '@ionic/react';
 import './Home.css';
 import Content from '../components/Content';
-import { Data } from '../data/data';
-import { getData } from '../data/data';
+import { Data, setStorageData } from '../data/data';
+import { getData, initStorage } from '../data/data';
 
 const Home: React.FC = () => {
   const [contents, setContents] = useState<Data[]>([]);
 
   useEffect(() => {
+    initStorage();
     setContents(getData());
   }, []);
-
-  const refresh = (e: CustomEvent) => {
-    setTimeout(() => {
-      e.detail.complete();
-    }, 3000);
-  };
-
   const handleDeleteContent = (index: number) => {
     const updatedContents = [...contents];
     updatedContents.splice(index, 1);
     setContents(updatedContents);
+    setStorageData(updatedContents);
   };
 
   return (
     <IonPage id="home-page">
       <IonContent fullscreen>
-        <IonRefresher slot="fixed" onIonRefresh={refresh}>
-          <IonRefresherContent></IonRefresherContent>
-        </IonRefresher>
-
         <IonList>
           {contents.map((c, index) => (
             <Content
