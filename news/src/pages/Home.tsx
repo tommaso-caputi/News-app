@@ -1,21 +1,24 @@
-import Content from '../components/Content';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   IonContent,
-  IonHeader,
   IonList,
   IonPage,
   IonRefresher,
   IonRefresherContent,
-  IonTitle,
-  IonToolbar,
+  IonText,
 } from '@ionic/react';
 import './Home.css';
+import Content from '../components/Content';
 import { Data } from '../data/data';
+import { getData } from '../data/data';
 
 const Home: React.FC = () => {
 
-  const [contents, setContents] = useState<Data[]>([{ title: 'provaTitolo', author: 'provaAutore', url: 'https://google.com' }]);
+  const [contents, setContents] = useState<Data[]>([]);
+
+  useEffect(() => {
+    setContents(getData());
+  }, []);
 
 
   const refresh = (e: CustomEvent) => {
@@ -25,17 +28,17 @@ const Home: React.FC = () => {
   };
 
   return (
-    <IonPage id="home-page">
+    <IonPage id="home-page" >
       <IonContent fullscreen>
         <IonRefresher slot="fixed" onIonRefresh={refresh}>
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
 
         <IonList>
-          {contents.map(c => <Content key={c.title} data={c} />)}
+          {contents.map((c, index) => <Content key={`${c.title}-${index}`} data={c} />)}
         </IonList>
       </IonContent>
-    </IonPage>
+    </IonPage >
   );
 };
 
