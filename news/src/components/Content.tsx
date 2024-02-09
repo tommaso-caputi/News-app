@@ -16,9 +16,10 @@ import { Data } from '../data/data';
 export interface ContentProps {
   data: Data;
   onDelete: () => void;
+  onDone: () => void;
 }
 
-const Content: React.FC<ContentProps> = ({ data, onDelete }) => {
+const Content: React.FC<ContentProps> = ({ data, onDelete, onDone }) => {
   const handleCardClick = () => {
     window.open(data.url, '_blank');
   };
@@ -31,11 +32,11 @@ const Content: React.FC<ContentProps> = ({ data, onDelete }) => {
       </IonCardHeader>
       <IonCardContent className="no-padding">
         {data.topics.map((t, index) => (
-          <IonBadge key={index}>{t}</IonBadge>
+          <IonBadge key={index + 1}>{t}</IonBadge>
         ))}
       </IonCardContent>
       <div className="buttonContainer">
-        <IonButton>
+        <IonButton onClick={onDone}>
           <IonIcon size="small" slot="icon-only" icon={checkmarkOutline}></IonIcon>
         </IonButton>
         <IonButton onClick={onDelete}>
