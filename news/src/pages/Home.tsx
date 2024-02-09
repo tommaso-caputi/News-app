@@ -1,4 +1,3 @@
-// Home.tsx
 import { useEffect, useState } from 'react';
 import {
   IonContent,
@@ -8,7 +7,7 @@ import {
   IonRefresherContent,
 } from '@ionic/react';
 import './Home.css';
-import Content, { ContentProps } from '../components/Content';
+import Content from '../components/Content';
 import { Data } from '../data/data';
 import { getData } from '../data/data';
 
