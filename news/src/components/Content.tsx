@@ -1,3 +1,5 @@
+// Content.tsx
+import React from 'react';
 import {
   IonBadge,
   IonButton,
@@ -7,38 +9,41 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonIcon,
-  IonItem,
 } from '@ionic/react';
 import { trashOutline, checkmarkOutline } from 'ionicons/icons';
 import './Content.css';
-import { Data } from '../data/data'
+import { Data } from '../data/data';
 
-interface ContentProps {
+export interface ContentProps {
   data: Data;
+  onDelete: () => void;
 }
 
-const Content: React.FC<ContentProps> = ({ data }) => {
+const Content: React.FC<ContentProps> = ({ data, onDelete }) => {
   const handleCardClick = () => {
     window.open(data.url, '_blank');
   };
+
   return (
     <IonCard>
       <IonCardHeader onClick={handleCardClick}>
-        <IonCardTitle>{data.title}</IonCardTitle>
+        <IonCardTitle className="smallText">{data.title}</IonCardTitle>
         <IonCardSubtitle>{data.author}</IonCardSubtitle>
       </IonCardHeader>
       <IonCardContent className="no-padding">
-        {data.topics.map(t => <IonBadge>{t}</IonBadge>)}
+        {data.topics.map((t, index) => (
+          <IonBadge key={index}>{t}</IonBadge>
+        ))}
       </IonCardContent>
-      <div className='buttonContainer'>
+      <div className="buttonContainer">
         <IonButton>
           <IonIcon size="small" slot="icon-only" icon={checkmarkOutline}></IonIcon>
         </IonButton>
-        <IonButton>
+        <IonButton onClick={onDelete}>
           <IonIcon size="small" slot="icon-only" icon={trashOutline}></IonIcon>
         </IonButton>
       </div>
-    </IonCard >
+    </IonCard>
   );
 };
 

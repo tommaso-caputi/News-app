@@ -8,16 +8,22 @@ export interface Data {
 export const getData = () => {
     return [
         {
-            title: 'provaTitolo',
-            author: 'provaAutore',
-            url: 'https://google.com',
-            topics: ['startup', 'tech']
+            "title": "Accounting software startup Pennylane becomes France’s latest unicorn - TechCrunch",
+            "url": "https://techcrunch.com/2024/02/07/accounting-software-startup-pennylane-becomes-frances-latest-unicorn/",
+            "author": "TechCrunch",
+            "topics": ['startup']
         },
         {
-            title: 'provaTitolo2',
-            author: 'provaAutore2',
-            url: 'https://google.com',
-            topics: ['startup', 'tech']
+            "title": "Smart label startup Sensos raises $20 million Series A - CTech",
+            "url": "https://www.calcalistech.com/ctechnews/article/hyryl4mja",
+            "author": "CTech",
+            "topics": ['startup']
+        },
+        {
+            "title": "Why a B2B startup is placing a bet on a $7M Super Bowl ad - TechCrunch",
+            "url": "https://techcrunch.com/2024/02/09/why-a-b2b-startup-is-placing-a-bet-on-a-7-million-super-bowl-ad/",
+            "author": "TechCrunch",
+            "topics": ['startup']
         }
     ]
 }

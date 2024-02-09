@@ -15,3 +15,7 @@ ion-badge {
 ion-button {
   margin: 3%;
 }
+
+.smallText {
+  font-size: x-large;
+}
