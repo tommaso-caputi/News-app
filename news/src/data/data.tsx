@@ -118,33 +118,5 @@ export const saveContentToNotionDb = (data: Data): void => {
 }
 
 
-var topicsNotionIds = { 'Startup': '1e6a70f3-51ea-41d2-8ee0-4e61f3671cac' }
+var topicsNotionIds = { 'Coding': 'caa76e75-ceb5-4cbf-9d31-eb3842252bc7', 'Geopolitics': '4ec7561b-752e-4718-aaf5-07907f2f93b9', 'Carrier': 'b21f6762-1b89-4822-b7b5-639966224c4f', 'Startup': '1e6a70f3-51ea-41d2-8ee0-4e61f3671cac', 'Love': '55077789-49c9-48ee-ad05-9b86c30d50fc', 'Family': '76b64b4c-f3cc-4b00-ae22-4b574159800b', 'Mindset': '029e8cde-42f0-4a49-afe0-2551f03f3ecc', 'Finance': '5e06e667-bc85-4f38-afae-fe56c60ca2a1', 'Dev': '34ec1227-c16c-4598-abf2-877505254e97', 'Design': '3e575552-d90d-4b8e-bb78-fa4c62609f6a', 'Art': '1dc1527a-7d1b-4ce6-b7f1-27ef05afc2ed', 'Math': '6db2aea9-681f-44fb-827d-34eecc584fdb', 'Crime': '2d5db2fb-1094-48e4-8e5c-7fb960d5e68d', 'Philosophy': 'db76239c-a366-4310-9ea9-b88d1ea40428', 'Society': '15f429d7-bcc7-401e-8832-7623034f640c', 'Science': '5176fbbf-088c-4ade-8b7c-a7d9732290e5', 'Science fantasy': '093558d6-4238-4a09-867c-560c01e9a58a', 'Psicology': '59ff26ea-e206-4e99-9882-04bd1814cde7', 'Productivity': '3d366a4c-e056-46d4-bdd5-ebc60c033da3' }
 
-
-
-var exampleData = [
-    {
-        "title": "provaTitolo",
-        "url": "provaUrl",
-        "author": "provaAuthor",
-        "topics": ['article', 'startup', 'provaTopic']
-    },
-    {
-        "title": "Accounting software startup Pennylane becomes France’s latest unicorn - TechCrunch",
-        "url": "https://techcrunch.com/2024/02/07/accounting-software-startup-pennylane-becomes-frances-latest-unicorn/",
-        "author": "TechCrunch",
-        "topics": ['article', 'startup']
-    },
-    {
-        "title": "Smart label startup Sensos raises $20 million Series A - CTech",
-        "url": "https://www.calcalistech.com/ctechnews/article/hyryl4mja",
-        "author": "CTech",
-        "topics": ['article', 'startup']
-    },
-    {
-        "title": "Why a B2B startup is placing a bet on a $7M Super Bowl ad - TechCrunch",
-        "url": "https://techcrunch.com/2024/02/09/why-a-b2b-startup-is-placing-a-bet-on-a-7-million-super-bowl-ad/",
-        "author": "TechCrunch",
-        "topics": ['article', 'startup']
-    }
-]
