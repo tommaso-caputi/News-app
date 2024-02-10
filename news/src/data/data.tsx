@@ -20,10 +20,28 @@ export const initStorage = () => {
     const currentDate = new Date().toJSON().slice(0, 10);
     if (!localStorage.getItem('date') || currentDate !== localStorage.getItem('date')) {
         localStorage.setItem('date', currentDate);
-
-        setStorageData(exampleData);
+        console.log("get new data");
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        fetch("https://tommasocaputi.altervista.org/NewsApp/getData.php", {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setStorageData(data);
+                console.log("Data fetched successfully:", data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
     }
 }
+
 
 export const getData = (): Data[] => {
     return getStorageData();
