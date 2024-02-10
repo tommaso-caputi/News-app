@@ -3,6 +3,9 @@ import {
   IonContent,
   IonList,
   IonPage,
+  IonRefresher,
+  IonRefresherContent,
+  RefresherEventDetail,
 } from '@ionic/react';
 import './Home.css';
 import Content from '../components/Content';
@@ -12,9 +15,14 @@ import { getData, initStorage } from '../data/data';
 const Home: React.FC = () => {
   const [contents, setContents] = useState<Data[]>([]);
 
+  const refresh = async (ok: boolean) => {
+    await initStorage(ok);
+    const newData = getData();
+    setContents(newData);
+  }
+
   useEffect(() => {
-    initStorage();
-    setContents(getData());
+    refresh(false);
   }, []);
   const handleDeleteContent = (index: number) => {
     const updatedContents = [...contents];
@@ -30,10 +38,19 @@ const Home: React.FC = () => {
     saveContentToNotionDb(data);
   };
 
+  function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
+    setTimeout(() => {
+      refresh(true);
+      event.detail.complete();
+    }, 2000);
+  }
 
   return (
     <IonPage id="home-page">
       <IonContent fullscreen>
+        <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
+          <IonRefresherContent></IonRefresherContent>
+        </IonRefresher>
         <IonList>
           {contents.map((c, index) => (
             <Content

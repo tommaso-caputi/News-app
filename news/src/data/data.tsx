@@ -13,34 +13,34 @@ export const setStorageData = (data: Data[]) => {
     localStorage.setItem('data', JSON.stringify(data))
 }
 
-export const initStorage = () => {
+export const initStorage = async (refresh: boolean) => {
     if (!localStorage.getItem('data')) {
         localStorage.setItem('data', JSON.stringify([]));
     }
     const currentDate = new Date().toJSON().slice(0, 10);
-    if (!localStorage.getItem('date') || currentDate !== localStorage.getItem('date')) {
+    if (!localStorage.getItem('date') || currentDate !== localStorage.getItem('date') || refresh) {
         localStorage.setItem('date', currentDate);
-        console.log("get new data");
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        fetch("https://tommasocaputi.altervista.org/NewsApp/getData.php", {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow'
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setStorageData(data);
-                console.log("Data fetched successfully:", data);
-            })
-            .catch(error => console.error('Error fetching data:', error));
+        console.log("Fetching new data...");
+        try {
+            const response = await fetch("https://tommasocaputi.altervista.org/NewsApp/getData.php", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                redirect: 'follow'
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log("Data fetched successfully:", data);
+            setStorageData(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     }
 }
+
 
 
 export const getData = (): Data[] => {
