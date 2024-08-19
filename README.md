@@ -1,4 +1,4 @@
-# Project Title
+# News App
 
 News app connected to notion db for save future reads
 
