@@ -1,3 +1,7 @@
-# News-app
+# Project Title
 
-Every day the app gets new content which can be delete or added to a notion db
+News app connected to notion db for save future reads
+
+## Description
+
+News app build using react and ionic, setting the prefered topics, every day the app gives new articles which can be stored on notion db.
